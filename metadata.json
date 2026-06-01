@@ -1,0 +1,6 @@
+{
+  "name": "Fluid Marketplace",
+  "description": "Un hermoso mercado de servicios para el hogar, artesanías y proveedores independientes con sistema de inventario y panel de administración.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

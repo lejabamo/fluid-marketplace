@@ -1,101 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800;950&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #FF4D00;
-  --color-primary-container: #000000;
-  --color-background-custom: #F7F7F7;
-  --color-surface-container: #E6E9E8;
-  --color-surface-container-low: #F7F7F7;
+  --color-primary: #E05C1D; /* Naranja fuerte/terracota */
+  --color-primary-container: #FDE8D7;
+  --color-background-custom: #FAF7F2; /* Beige muy claro */
+  --color-surface-container: #FFFFFF;
+  --color-surface-container-low: #F5EFE6;
   --color-surface-container-lowest: #FFFFFF;
-  --color-surface-container-high: #E6E9E8;
-  --color-surface-container-highest: #C8CDCC;
-  --color-secondary-custom: #1A1A1A;
-  --color-secondary-container: #E1D1F6;
-  --color-on-secondary-container: #000000;
-  --color-on-surface: #1A1A1A;
-  --color-on-surface-variant: #444444;
-  --color-outline-custom: #000000;
-  --color-outline-variant: #000000;
-  --color-tertiary-custom: #F9E2AF;
-  --color-tertiary-container: #FFD1DC;
-  --color-on-tertiary-container: #000000;
+  --color-surface-container-high: #EBE1D1;
+  --color-surface-container-highest: #D9C8B0;
+  --color-secondary-custom: #5C3D2E; /* Café oscuro / Marrón */
+  --color-secondary-container: #EAE0D5;
+  --color-on-secondary-container: #3E2723;
+  --color-on-surface: #2D1A11;
+  --color-on-surface-variant: #5C4A42;
+  --color-outline-custom: #D2C1B0;
+  --color-outline-variant: #E8DFD5;
+  --color-tertiary-custom: #B85B14; /* Naranja oscuro para el trueque */
+  --color-tertiary-container: #FADBB8;
+  --color-on-tertiary-container: #5E2A00;
   
-  --font-headline: "Manrope", sans-serif;
-  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-headline: "Outfit", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
 body {
-  background-color: #F7F7F7;
-  color: #1A1A1A;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  background-color: #F8FAFC;
+  color: #0F172A;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Neo-brutalist Shadows and borders */
+/* Modern Soft UI Overrides */
 .brutalist-card {
   background-color: #FFFFFF;
-  border: 2px solid #000000;
-  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
-  transition: all 0.2s ease;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
 }
 
 .brutalist-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: rgba(224, 92, 29, 0.3); /* Naranja */
 }
 
 .brutalist-button {
   background-color: #FFFFFF;
-  color: #000000;
-  border: 2px solid #000000;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
-  transition: all 0.1s ease;
+  color: #2D1A11; /* Marrón oscuro */
+  border: 1px solid #D2C1B0;
+  border-radius: 9999px;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
 }
 
 .brutalist-button:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+  background-color: #FAF7F2;
+  border-color: #B85B14;
+  transform: translateY(-1px);
 }
 
 .brutalist-button:active {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px 0px rgba(0,0,0,1);
+  transform: translateY(0);
 }
 
 .brutalist-button-primary {
-  background-color: #FF4D00;
+  background: linear-gradient(135deg, #E05C1D 0%, #B85B14 100%);
   color: #FFFFFF;
-  border: 2px solid #000000;
-  font-weight: 950;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
-  transition: all 0.1s ease;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(224, 92, 29, 0.3), 0 2px 4px -1px rgba(224, 92, 29, 0.2);
+  transition: all 0.2s ease;
 }
 
 .brutalist-button-primary:hover {
-  background-color: #E24400;
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+  box-shadow: 0 6px 8px -1px rgba(224, 92, 29, 0.4), 0 4px 6px -2px rgba(224, 92, 29, 0.3);
+  transform: translateY(-1px);
 }
 
 .brutalist-input {
-  background-color: #FFFFFF;
-  border: 2px solid #000000 !important;
-  border-radius: 0px !important;
-  font-weight: 700;
+  background-color: #FAF7F2;
+  border: 1px solid #D2C1B0 !important;
+  border-radius: 12px !important;
+  font-weight: 400;
+  padding: 0.75rem 1rem;
   outline: none;
+  transition: all 0.2s ease;
 }
 
 .brutalist-input:focus {
   background-color: #FFFFFF;
-  box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
+  border-color: #E05C1D !important;
+  box-shadow: 0 0 0 3px rgba(224, 92, 29, 0.2);
 }
 
-/* Hide scrollbar utility */
+/* Trueque / Barter Highlight */
+.barter-badge {
+  background: linear-gradient(135deg, #B85B14 0%, #8C400A 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 2px 4px rgba(184, 91, 20, 0.2);
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

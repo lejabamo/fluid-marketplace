@@ -4,12 +4,12 @@
  */
 
 export type ServiceCategory = 
-  | 'aseo'           // Aseo Hogar
-  | 'jardinera'      // Jardinería
-  | 'plomeria'       // Plomería
-  | 'artesanias'     // Artesanías (tangible goods with inventory stock)
-  | 'electricista'   // Electricista
-  | 'lavado_carros'; // Lavado de carros
+  | 'productos_aseo'   // Jabones y útiles de aseo
+  | 'artesanias'       // Artesanías
+  | 'agro_local'       // Productos agrícolas / campesinos
+  | 'oficios_hogar'    // Oficios y reparaciones
+  | 'confecciones'     // Ropa y confecciones locales
+  | 'gastronomia';     // Comida típica y panadería
 
 export interface ProductServiceItem {
   id: string;
@@ -22,6 +22,9 @@ export interface ProductServiceItem {
   stock: number; // For inventory management
   isService: boolean; // true = service (hours/labor), false = merchandise (crafts/tangible product with physical stock)
   providerId: string;
+  acceptsBarter?: boolean; // Marketing & Trueque focus
+  barterPreferences?: string; // What they are willing to trade for
+  estimatedBarterValue?: number; // Sistema de medidas: Valor de referencia para trueques (en Créditos/Puntos o COP)
 }
 
 export interface ProviderProfile {
@@ -59,7 +62,12 @@ export interface UserRequest {
   time: string;
   details: string;
   priceOffer: number;
-  status: 'broadcasted' | 'countered' | 'accepted';
+  status: 'broadcasted' | 'countered' | 'accepted' | 'barter_proposed';
   counterPrice?: number;
   providerId?: string; // accepted by
+  isBarterProposal?: boolean;
+  barterOfferDescription?: string;
+  barterEstimatedValue?: number; // Sistema de medidas para la oferta de trueque
+  targetItemId?: string; // Para ofertas directas a un producto/servicio
+  targetItemName?: string;
 }

@@ -2,222 +2,181 @@ import { ProductServiceItem, ProviderProfile, Appointment, UserRequest, ServiceC
 
 export const INITIAL_PROVIDERS: ProviderProfile[] = [
   {
-    id: 'prov_sarah',
-    name: 'Sarah Jennings',
-    specialty: 'Aseo de Hogar Premium',
-    rating: 5.0,
-    reviewsCount: 124,
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop',
-    coverImage: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop',
-    bio: 'Especialista certificada en limpieza profunda y desinfección ambiental. Utilizo productos ecológicos, seguros para niños y mascotas. Detallista y confiable con más de 5 años de servicio en residencias y oficinas.',
-    location: 'Sectors Norte y Centro, CDMX',
-    skills: ['Limpieza Profunda', 'Planchado & Lavandería', 'Organización Closet', 'Desinfección de Baños'],
-    isOnline: true,
-    earningsToday: 342.50
-  },
-  {
-    id: 'prov_elena',
-    name: 'Elena Rodríguez',
-    specialty: 'Jardinería & Paisajismo',
-    rating: 4.8,
-    reviewsCount: 96,
-    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop',
-    coverImage: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=800&auto=format&fit=crop',
-    bio: 'Graduada en paisajismo, ofrezco mantenimiento integral de jardines, poda de formación, diseño exterior y control ecológico de plagas. Hago que tu jardín sea un oasis sustentable y vibrante.',
-    location: 'Sur, San Ángel y Coyoacán',
-    skills: ['Diseño de Jardín', 'Sistema Riego', 'Poda Césped', 'Tratamiento de Tierra', 'Invernaderos'],
-    isOnline: true,
-    earningsToday: 180.00
-  },
-  {
-    id: 'prov_marcus',
-    name: 'Marcus Thorne',
-    specialty: 'Plomería Residencial Experta',
-    rating: 4.9,
-    reviewsCount: 184,
-    avatar: 'https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=400&auto=format&fit=crop',
-    coverImage: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800&auto=format&fit=crop',
-    bio: 'Reparación e instalación técnica e hidráulica. Fugas rebeldes, calentadores, sanitarios, cisternas y destapes con equipo avanzado. Atención rápida las 24 horas para urgencias domésticas.',
-    location: 'Condesa, Roma y Polanco',
-    skills: ['Detección de Fugas', 'Instalación Boiler', 'Destape de Drenaje', 'Bombas de Presión'],
-    isOnline: true,
-    earningsToday: 430.00
-  },
-  {
-    id: 'prov_carmen',
-    name: 'Carmen Díaz',
-    specialty: 'Artesana Textil & Cerámicas',
+    id: 'prov_marta',
+    name: 'Marta Tunubalá',
+    specialty: 'Artesanías Misak',
     rating: 4.9,
     reviewsCount: 112,
     avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop',
     coverImage: 'https://images.unsplash.com/photo-1606744824163-985d376605aa?q=80&w=800&auto=format&fit=crop',
-    bio: 'Creadora artística local. Confecciono carteras de telar de cintura bordadas a mano y vajilla rústica de cerámica horneada a alta temperatura. Cada artículo lleva una narrativa milenaria y es único.',
-    location: 'Oaxaca de Juárez (Envíos nacionales)',
-    skills: ['Telar de Cintura', 'Modelado en Barro', 'Pintado a Mano', 'Tintes Orgánicos'],
+    bio: 'Tejedora tradicional del municipio de Silvia, Cauca. Elaboro mochilas, ruanas y tambores manteniendo vivas las tradiciones de mi comunidad.',
+    location: 'Silvia, Cauca (Envíos a Popayán)',
+    skills: ['Tejido en lana', 'Mochilas', 'Diseños Tradicionales'],
     isOnline: true,
-    earningsToday: 210.00
+    earningsToday: 120000
   },
   {
-    id: 'prov_javier',
-    name: 'Javier Ortiz',
-    specialty: 'Electricista Autorizado',
+    id: 'prov_carlos',
+    name: 'Carlos Muñoz',
+    specialty: 'Jabones y Útiles Ecológicos',
+    rating: 4.8,
+    reviewsCount: 96,
+    avatar: 'https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=400&auto=format&fit=crop',
+    coverImage: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop',
+    bio: 'Emprendedor de Popayán dedicado a la creación de productos de aseo biodegradables y jabones artesanales con esencias locales.',
+    location: 'Barrio La Esmeralda, Popayán',
+    skills: ['Jabones Artesanales', 'Detergentes Bio', 'Aseo Sostenible'],
+    isOnline: true,
+    earningsToday: 85000
+  },
+  {
+    id: 'prov_lucia',
+    name: 'Lucía Gómez',
+    specialty: 'Agricultura Orgánica Local',
+    rating: 5.0,
+    reviewsCount: 184,
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop',
+    coverImage: 'https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?q=80&w=800&auto=format&fit=crop',
+    bio: 'Productora campesina de la zona de Puracé. Cultivo frutas de clima frío y extraigo miel pura de abejas sin pesticidas.',
+    location: 'Vereda Santa Leticia, Puracé',
+    skills: ['Cultivo Orgánico', 'Apicultura', 'Cosecha Responsable'],
+    isOnline: true,
+    earningsToday: 215000
+  },
+  {
+    id: 'prov_julio',
+    name: 'Julio Paz',
+    specialty: 'Plomería y Mantenimiento',
     rating: 4.7,
     reviewsCount: 142,
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop',
-    coverImage: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop',
-    bio: 'Técnico electricista certificado. Cortocircuitos, cableado estructurado, tableros de control con termomagnéticos, iluminación LED y mantenimiento de subestaciones residenciales. Seguridad garantizada.',
-    location: 'Área Metropolitana CDMX',
-    skills: ['Cortos Circuitos', 'Instalaciones Nuevas', 'Tableros Eléctricos', 'Luminarias Smart'],
+    coverImage: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800&auto=format&fit=crop',
+    bio: 'Especialista en reparaciones domésticas. Arreglo tuberías, instalaciones eléctricas básicas y goteras. Atención en el casco urbano de Popayán.',
+    location: 'Centro Histórico, Popayán',
+    skills: ['Plomería', 'Electricidad Básica', 'Impermeabilización'],
     isOnline: true,
-    earningsToday: 195.00
+    earningsToday: 95000
   },
   {
-    id: 'prov_mateo',
-    name: 'Mateo Gómez',
-    specialty: 'Detallado & Lavado Car Wash',
+    id: 'prov_teresa',
+    name: 'Teresa Solano',
+    specialty: 'Gastronomía Tradicional',
     rating: 4.9,
-    reviewsCount: 88,
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop',
-    coverImage: 'https://images.unsplash.com/photo-1520340356584-f9917d1ecc6f?q=80&w=800&auto=format&fit=crop',
-    bio: 'Especialista en detallado automotriz ecológico a domicilio. Corrección de pintura, encerado híbrido, higienización de interiores con vapor caliente y limpieza profunda de tapicería.',
-    location: 'Cuajimalpa y Santa Fe',
-    skills: ['Pulido & Encerado', 'Lavado a Vapor', 'Restauración de Faros', 'Descontaminado Pintura'],
+    reviewsCount: 305,
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop',
+    coverImage: 'https://images.unsplash.com/photo-1528738064262-9f834a7d2bf6?q=80&w=800&auto=format&fit=crop',
+    bio: 'Rescatando los sabores de Popayán. Preparo auténticos tamales y empanadas de pipián con la receta de la abuela, con maní y ají tradicional.',
+    location: 'Barrio Bolívar, Popayán',
+    skills: ['Comida Típica', 'Pipián', 'Amasijos'],
     isOnline: false,
-    earningsToday: 120.00
+    earningsToday: 350000
   }
 ];
 
 export const INITIAL_ITEMS: ProductServiceItem[] = [
-  // Aseo Hogar
+  // Productos Aseo
   {
-    id: 'item_clean_standard',
-    name: 'Limpieza Básica del Hogar',
-    category: 'aseo',
-    price: 30,
-    priceUnit: 'hora',
-    description: 'Barrer, trapear, sacudir, limpieza de cristales internos, tendido de camas, lavado de trastes básicos e higiene general de recámaras.',
-    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop',
-    stock: 24, // slot availability or general capacity
-    isService: true,
-    providerId: 'prov_sarah'
+    id: 'item_jabon_calendula',
+    name: 'Jabón Artesanal de Caléndula y Café',
+    category: 'productos_aseo',
+    price: 15000,
+    priceUnit: 'unidad',
+    description: 'Jabón exfoliante elaborado a mano con granos de café del Cauca y extracto de caléndula, ideal para el cuidado de la piel.',
+    image: 'https://images.unsplash.com/photo-1600857062241-98e5dba7f214?q=80&w=800&auto=format&fit=crop',
+    stock: 35,
+    isService: false,
+    providerId: 'prov_carlos',
+    acceptsBarter: true,
+    barterPreferences: 'Hortalizas, frutas frescas o miel',
+    estimatedBarterValue: 15
   },
   {
-    id: 'item_clean_deep',
-    name: 'Limpieza Profunda & Desinfección',
-    category: 'aseo',
-    price: 45,
-    priceUnit: 'hora',
-    description: 'Limpieza profunda de campanas, hornos, remoción de sarro difícil en azulejos, desinfección a vapor y aspirado especializado de colchones.',
-    image: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=800&auto=format&fit=crop',
+    id: 'item_kit_aseo',
+    name: 'Kit de Limpieza Ecológica',
+    category: 'productos_aseo',
+    price: 45000,
+    priceUnit: 'unidad',
+    description: 'Kit que incluye detergente biodegradable, limpiador multiusos de cítricos y esponja natural de luffa.',
+    image: 'https://images.unsplash.com/photo-1584820927498-cafe2c1c6849?q=80&w=800&auto=format&fit=crop',
     stock: 12,
-    isService: true,
-    providerId: 'prov_sarah'
+    isService: false,
+    providerId: 'prov_carlos'
   },
-  
-  // Jardinería
+  // Artesanias
   {
-    id: 'item_gardening_mow',
-    name: 'Poda de Césped y Mantenimiento General',
-    category: 'jardinera',
-    price: 35,
-    priceUnit: 'hora',
-    description: 'Poda regular de pasto, perfilado de banquetas, eliminación de hierba mala, nutrientes foliares aplicados y poda simple de arbustos.',
-    image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=800&auto=format&fit=crop',
-    stock: 15,
-    isService: true,
-    providerId: 'prov_elena'
-  },
-  {
-    id: 'item_gardening_design',
-    name: 'Diseño de Jardines & Sustrato',
-    category: 'jardinera',
-    price: 60,
-    priceUnit: 'servicio',
-    description: 'Asesoría y diseño completo de paisajismo en espacios pequeños, incluyendo selección botánica decorativa e incorporación de abono orgánico.',
-    image: 'https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?q=80&w=800&auto=format&fit=crop',
+    id: 'item_mochila_misak',
+    name: 'Mochila Tradicional Misak',
+    category: 'artesanias',
+    price: 120000,
+    priceUnit: 'unidad',
+    description: 'Mochila en lana de oveja hilada a mano, colores magenta, azul y negro propios de la cultura Misak de Silvia, Cauca.',
+    image: 'https://images.unsplash.com/photo-1616428456073-61b4db1ee235?q=80&w=800&auto=format&fit=crop',
     stock: 5,
-    isService: true,
-    providerId: 'prov_elena'
+    isService: false,
+    providerId: 'prov_marta',
+    acceptsBarter: true,
+    barterPreferences: 'Servicios de publicidad, insumos agrícolas o transporte',
+    estimatedBarterValue: 120
   },
-
-  // Plomería
+  // Agro Local
   {
-    id: 'item_plumb_detect',
-    name: 'Detección & Reparación de Filtraciones',
-    category: 'plomeria',
-    price: 45,
-    priceUnit: 'hora',
-    description: 'Localización asistida de humedad o pérdidas internas en tuberías de cobre o PVC, reparación exprés y sellado de uniones críticas.',
-    image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800&auto=format&fit=crop',
-    stock: 8,
-    isService: true,
-    providerId: 'prov_marcus'
+    id: 'item_miel_purace',
+    name: 'Miel de Abejas Pura del Puracé',
+    category: 'agro_local',
+    price: 28000,
+    priceUnit: 'unidad',
+    description: 'Miel cruda de bosque alto andino, recolectada por asociaciones campesinas en las faldas del Volcán Puracé.',
+    image: 'https://images.unsplash.com/photo-1587049352847-4d4b1275eb1f?q=80&w=800&auto=format&fit=crop',
+    stock: 20,
+    isService: false,
+    providerId: 'prov_lucia',
+    acceptsBarter: true,
+    barterPreferences: 'Utensilios de cocina o jabones artesanales',
+    estimatedBarterValue: 28
   },
   {
-    id: 'item_plumb_boiler',
-    name: 'Instalación o Mantenimiento de Boiler',
-    category: 'plomeria',
-    price: 120,
+    id: 'item_fresas',
+    name: 'Canasta de Fresas Orgánicas',
+    category: 'agro_local',
+    price: 12000,
+    priceUnit: 'canasta',
+    description: 'Fresas dulces cultivadas sin químicos en Puracé, ideales para postres o consumo fresco.',
+    image: 'https://images.unsplash.com/photo-1518110996637-5264b3cdcbac?q=80&w=800&auto=format&fit=crop',
+    stock: 15,
+    isService: false,
+    providerId: 'prov_lucia'
+  },
+  // Oficios Hogar
+  {
+    id: 'item_plomeria_fugas',
+    name: 'Reparación de Fugas en Tuberías',
+    category: 'oficios_hogar',
+    price: 50000,
     priceUnit: 'servicio',
-    description: 'Limpieza e instalación técnica de calentadores solares, de gas instantáneos (paso) o almacenamiento. Incluye purga de líneas.',
-    image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=800&auto=format&fit=crop',
+    description: 'Detección y sellado de fugas en tuberías de agua potable o desagües en viviendas de Popayán.',
+    image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800&auto=format&fit=crop',
     stock: 10,
     isService: true,
-    providerId: 'prov_marcus'
+    providerId: 'prov_julio',
+    acceptsBarter: true,
+    barterPreferences: 'Mercado campesino o almuerzos',
+    estimatedBarterValue: 50
   },
-
-  // Artesanías (PRODUCTOS FÍSICOS CON STOCK LIMITADO)
+  // Gastronomía
   {
-    id: 'item_craft_bag',
-    name: 'Bolso Artesanal "Telar de Mil Colores"',
-    category: 'artesanias',
-    price: 75,
-    priceUnit: 'unidad',
-    description: 'Cartera premium de telar hecha con hilos de algodón teñidos orgánicamente. Forro interior de lino con cierres de latón premium.',
-    image: 'https://images.unsplash.com/photo-1606744824163-985d376605aa?q=80&w=800&auto=format&fit=crop',
-    stock: 14, // Real physically editable stock!
+    id: 'item_empanadas',
+    name: 'Docena de Empanadas de Pipián',
+    category: 'gastronomia',
+    price: 24000,
+    priceUnit: 'docena',
+    description: 'Las auténticas empanadas de Popayán, rellenas de papa colorada y maní, acompañadas del mejor ají de maní.',
+    image: 'https://images.unsplash.com/photo-1626074961564-9eb41094f997?q=80&w=800&auto=format&fit=crop',
+    stock: 40,
     isService: false,
-    providerId: 'prov_carmen'
-  },
-  {
-    id: 'item_craft_pottery',
-    name: 'Juego de Tazas de Barro Negro Pulido',
-    category: 'artesanias',
-    price: 90,
-    priceUnit: 'unidad',
-    description: 'Set de 4 tazas rústicas de barro negro bruñido y horneado en pozo de leña. Acabado brillante natural sin aditivos químicos.',
-    image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop',
-    stock: 8, // Real physically editable stock!
-    isService: false,
-    providerId: 'prov_carmen'
-  },
-
-  // Electricista
-  {
-    id: 'item_elec_short',
-    name: 'Diagnóstico de Cortocircuitos Urgentes',
-    category: 'electricista',
-    price: 50,
-    priceUnit: 'hora',
-    description: 'Detección inmediata de fallas, sobrecargas y cables quemados. Reemplazo de fusibles dañados o pastillas térmicas principales.',
-    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop',
-    stock: 5,
-    isService: true,
-    providerId: 'prov_javier'
-  },
-
-  // Lavado de Carros
-  {
-    id: 'item_carwash_eco',
-    name: 'Detallado Ecológico Completo a Domicilio',
-    category: 'lavado_carros',
-    price: 40,
-    priceUnit: 'servicio',
-    description: 'Lavado con polímeros biodegradables (sin manguera externa, ahorro del 95% de agua). Aspirado interior, lustrador de llantas y aromatizante orgánico.',
-    image: 'https://images.unsplash.com/photo-1520340356584-f9917d1ecc6f?q=80&w=800&auto=format&fit=crop',
-    stock: 12,
-    isService: true,
-    providerId: 'prov_mateo'
+    providerId: 'prov_teresa',
+    acceptsBarter: true,
+    barterPreferences: 'Reparaciones locativas o insumos para cocina (aceite, masa)',
+    estimatedBarterValue: 24
   }
 ];
 
@@ -226,33 +185,11 @@ export const INITIAL_APPOINTMENTS: Appointment[] = [
     id: 'app_1',
     timeSlot: '14:30 - 16:00',
     clientName: 'Daniela Montes',
-    category: 'aseo',
-    itemName: 'Limpieza Básica del Hogar',
-    price: 90, // 3 horas
+    category: 'oficios_hogar',
+    itemName: 'Reparación de Fugas en Tuberías',
+    price: 50000,
     distance: '2.4 km',
     status: 'confirmed',
-    date: '2026-06-01'
-  },
-  {
-    id: 'app_2',
-    timeSlot: '09:00 - 11:30',
-    clientName: 'Roberto Garza',
-    category: 'jardinera',
-    itemName: 'Poda de Césped y Mantenimiento',
-    price: 87.5,
-    distance: '4.1 km',
-    status: 'completed',
-    date: '2026-06-01'
-  },
-  {
-    id: 'app_3',
-    timeSlot: '17:00 - 19:00',
-    clientName: 'Sofía Alcalá',
-    category: 'plomeria',
-    itemName: 'Reparación de Filtraciones',
-    price: 90,
-    distance: '1.2 km',
-    status: 'pending',
     date: '2026-06-01'
   }
 ];
@@ -260,22 +197,12 @@ export const INITIAL_APPOINTMENTS: Appointment[] = [
 export const INITIAL_REQUESTS: UserRequest[] = [
   {
     id: 'req_1',
-    category: 'aseo',
-    address: 'Av. Paseo de la Reforma 222, San Rafael',
+    category: 'gastronomia',
+    address: 'Barrio La Ladera, Popayán',
     date: 'Jun 2, 2026',
     time: '10:00 AM',
-    details: 'Limpieza de departamento de 2 recámaras y lavado de ventanas exteriores incluidas. Ofrezco buena tarifa.',
-    priceOffer: 50,
-    status: 'broadcasted'
-  },
-  {
-    id: 'req_2',
-    category: 'plomeria',
-    address: 'Ámsterdam 143, Condesa',
-    date: 'Jun 2, 2026',
-    time: '04:00 PM',
-    details: 'Tubo de fregadero fracturado chorreando agua. Requiere plomero verificado urgente con herramientas propias.',
-    priceOffer: 70,
+    details: 'Solicito servicio de catering con 50 tamales de pipián para un evento familiar.',
+    priceOffer: 250000,
     status: 'broadcasted'
   }
 ];
@@ -291,7 +218,11 @@ const KEYS = {
 };
 
 export const getStorageData = () => {
-  // Check if browser has data, else pre-populate
+  if (localStorage.getItem('fluid_mp_version') !== 'v4_search_cauca') {
+    localStorage.clear();
+    localStorage.setItem('fluid_mp_version', 'v4_search_cauca');
+  }
+
   if (!localStorage.getItem(KEYS.PROVIDERS)) {
     localStorage.setItem(KEYS.PROVIDERS, JSON.stringify(INITIAL_PROVIDERS));
   }
@@ -306,17 +237,17 @@ export const getStorageData = () => {
   }
   if (!localStorage.getItem(KEYS.CURRENT_USER)) {
     localStorage.setItem(KEYS.CURRENT_USER, JSON.stringify({
-      name: 'Daniel Villamil',
-      email: 'Daniel.V@ejemplo.com',
+      name: 'Leonardo Bastidas',
+      email: 'leonardo@unicauca.edu.co',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop',
-      address: 'Paseo de la Reforma 250, CDMX'
+      address: 'Calle 5 # 4-12, Popayán'
     }));
   }
   if (!localStorage.getItem(KEYS.CURRENT_ROLE)) {
-    localStorage.setItem(KEYS.CURRENT_ROLE, 'client'); // default
+    localStorage.setItem(KEYS.CURRENT_ROLE, 'client');
   }
   if (!localStorage.getItem(KEYS.SELECTED_PROVIDER_ID)) {
-    localStorage.setItem(KEYS.SELECTED_PROVIDER_ID, 'prov_sarah'); // default active provider for the "provider profile portal"
+    localStorage.setItem(KEYS.SELECTED_PROVIDER_ID, 'prov_marta');
   }
 
   return {
@@ -326,7 +257,7 @@ export const getStorageData = () => {
     requests: JSON.parse(localStorage.getItem(KEYS.REQUESTS) || '[]') as UserRequest[],
     currentUser: JSON.parse(localStorage.getItem(KEYS.CURRENT_USER) || '{}'),
     currentRole: localStorage.getItem(KEYS.CURRENT_ROLE) as 'client' | 'provider',
-    selectedProviderId: localStorage.getItem(KEYS.SELECTED_PROVIDER_ID) || 'prov_sarah'
+    selectedProviderId: localStorage.getItem(KEYS.SELECTED_PROVIDER_ID) || 'prov_marta'
   };
 };
 

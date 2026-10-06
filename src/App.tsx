@@ -18,8 +18,9 @@ export default function App() {
   // 1. Storage-backed State
   const [db, setDb] = useState(() => getStorageData());
 
-  const [activeTab, setActiveTab] = useState<'home' | 'requests' | 'bookings' | 'profile'>('home');
+  const [activeTab, setActiveTab] = useState<'home' | 'market' | 'requests' | 'bookings' | 'profile'>('home');
   const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | null>(null);
+  const [globalSearchQuery, setGlobalSearchQuery] = useState('');
 
   // Sync state with storage
   useEffect(() => {
@@ -224,12 +225,12 @@ export default function App() {
     <div className="min-h-screen bg-[#F7F7F7] text-[#1A1A1A] font-body pb-32">
       
       {/* Dynamic Header / Logo Area with Role Switcher */}
-      <header className="fixed top-0 w-full flex items-center justify-between px-6 h-18 bg-white border-b-4 border-black z-50 shadow-[0_4px_0px_rgba(0,0,0,0.1)]">
+      <header className="fixed top-0 w-full flex items-center justify-between px-6 h-18 bg-white border-b-4 border-gray-200 z-50 shadow-sm hover:shadow-md transition-shadow">
         <div 
           className="flex items-center gap-2 cursor-pointer select-none"
           onClick={() => { setSelectedCategory(null); setActiveTab('home'); }}
         >
-          <div className="w-9 h-9 border-2 border-black bg-[#FF4D00] flex items-center justify-center text-white text-base font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+          <div className="w-9 h-9 border border-gray-200 bg-primary flex items-center justify-center text-white text-base font-black shadow-sm hover:shadow-md transition-shadow">
             🏺
           </div>
           <h1 className="font-headline font-black uppercase tracking-tight text-xs sm:text-sm md:text-base text-black">
@@ -238,12 +239,12 @@ export default function App() {
         </div>
 
         {/* Dynamic Role Switcher Controls */}
-        <div className="flex bg-white border-2 border-black p-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-[10px] sm:text-xs font-black gap-1">
+        <div className="flex bg-white border border-gray-200 p-1 shadow-sm hover:shadow-md transition-shadow text-[10px] sm:text-xs font-black gap-1">
           <button
             onClick={() => handleSwitchRole('client')}
             className={`px-3 py-1.5 font-black uppercase tracking-wider transition-all cursor-pointer ${
               db.currentRole === 'client' 
-                ? 'bg-black text-white' 
+                ? 'bg-secondary-custom text-white' 
                 : 'text-gray-500 hover:text-black'
             }`}
           >
@@ -254,7 +255,7 @@ export default function App() {
             onClick={() => handleSwitchRole('provider')}
             className={`px-3 py-1.5 font-black uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
               db.currentRole === 'provider' 
-                ? 'bg-[#FF4D00] text-white' 
+                ? 'bg-primary text-white' 
                 : 'text-gray-500 hover:text-black'
             }`}
           >
@@ -276,10 +277,31 @@ export default function App() {
                 items={db.items}
                 currentUser={db.currentUser}
                 onSelectCategory={handleSelectCategory}
+                onSearchSubmit={(q) => {
+                  setGlobalSearchQuery(q);
+                  setActiveTab('market');
+                }}
                 onSelectProvider={(id) => {
                   setDb(prev => ({ ...prev, selectedProviderId: id }));
                   setActiveTab('profile'); // examine provider profile in detail tab
                 }}
+              />
+            )}
+
+            {/* Active Tab: Global Market / Mercado General */}
+            {activeTab === 'market' && (
+              <ServiceExplorer 
+                category="all"
+                initialSearchQuery={globalSearchQuery}
+                items={db.items}
+                providers={db.providers}
+                onBack={() => { setActiveTab('home'); setGlobalSearchQuery(''); }}
+                onSelectProvider={(id) => {
+                  setDb(prev => ({ ...prev, selectedProviderId: id }));
+                  setActiveTab('profile');
+                }}
+                onBroadcastRequest={handleBroadcastRequest}
+                onPurchaseItem={handlePurchaseItem}
               />
             )}
 
@@ -288,6 +310,7 @@ export default function App() {
               selectedCategory ? (
                 <ServiceExplorer 
                   category={selectedCategory}
+                  initialSearchQuery=""
                   items={db.items}
                   providers={db.providers}
                   onBack={() => setSelectedCategory(null)}
@@ -300,7 +323,7 @@ export default function App() {
                 />
               ) : (
                 <div className="space-y-6 text-center py-12">
-                  <div className="bg-[#FFEFE6] w-16 h-16 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-2xl mx-auto">
+                  <div className="bg-[#FFEFE6] w-16 h-16 border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex items-center justify-center text-2xl mx-auto">
                     🛠
                   </div>
                   <div>
@@ -315,7 +338,7 @@ export default function App() {
                       <button
                         key={cat}
                         onClick={() => handleSelectCategory(cat)}
-                        className="bg-white p-4 border-2 border-black font-black uppercase text-xs tracking-wider text-black flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FF4D00] hover:text-white transition-all active:translate-y-0.5 cursor-pointer"
+                        className="bg-white p-4 border border-gray-200 font-black uppercase text-xs tracking-wider text-black flex items-center gap-3 shadow-sm hover:shadow-md transition-shadow hover:bg-primary hover:text-white transition-all active:translate-y-0.5 cursor-pointer"
                       >
                         <span className="text-lg">
                           {cat === 'aseo' ? '🧹' : cat === 'jardinera' ? '🏡' : cat === 'plomeria' ? '🔧' : cat === 'artesanias' ? '🏺' : cat === 'electricista' ? '⚡' : '🚗'}
@@ -337,7 +360,7 @@ export default function App() {
                 </div>
 
                 {db.appointments.length === 0 ? (
-                  <div className="bg-white p-12 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center text-gray-500 text-xs font-black uppercase leading-relaxed">
+                  <div className="bg-white p-12 border border-gray-200 shadow-sm hover:shadow-md transition-shadow text-center text-gray-500 text-xs font-black uppercase leading-relaxed">
                     No tienes transacciones activas. Explora el catálogo o realiza compras de artesanías para probar el sistema de inventario autónomo.
                   </div>
                 ) : (
@@ -345,14 +368,14 @@ export default function App() {
                     {db.appointments.map((app) => (
                       <div 
                         key={app.id}
-                        className="bg-white p-5 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:translate-x-0.5 transition-all"
+                        className="bg-white p-5 border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:translate-x-0.5 transition-all"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 border-2 border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-2xl">
+                          <div className="w-12 h-12 border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow flex items-center justify-center text-2xl">
                             {app.itemName.includes('Compra') ? '🏺' : '📅'}
                           </div>
                           <div>
-                            <span className="text-[9px] uppercase tracking-wider font-extrabold text-black bg-[#E1D1F6] border border-black px-2 py-0.5 inline-block font-mono">
+                            <span className="text-[9px] uppercase tracking-wider font-extrabold text-black bg-[#E1D1F6] border border-gray-200 px-2 py-0.5 inline-block font-mono">
                               {app.itemName.includes('Compra') ? 'Mercancía Entregada' : 'Servicio Confirmado'}
                             </span>
                             <h4 className="font-black text-xs uppercase text-black pt-1.5">{app.itemName}</h4>
@@ -360,8 +383,8 @@ export default function App() {
                           </div>
                         </div>
 
-                        <div className="text-right flex items-center sm:flex-col gap-2 sm:gap-0 justify-between w-full sm:w-auto border-t sm:border-0 border-black/10 pt-2 sm:pt-0">
-                          <span className="text-base font-black text-[#FF4D00] block">${app.price}</span>
+                        <div className="text-right flex items-center sm:flex-col gap-2 sm:gap-0 justify-between w-full sm:w-auto border-t sm:border-0 border-gray-200/10 pt-2 sm:pt-0">
+                          <span className="text-base font-black text-primary block">${app.price}</span>
                           <span className="text-[8px] text-gray-400 font-mono font-bold uppercase">RECIBO CLIENTE</span>
                         </div>
                       </div>
@@ -377,27 +400,28 @@ export default function App() {
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => setActiveTab('home')}
-                    className="font-mono text-[10px] font-black uppercase tracking-wider text-black border-2 border-black bg-white px-3 py-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FF4D00] hover:text-white transition-all active:translate-y-0.5 cursor-pointer flex items-center gap-1"
+                    className="font-mono text-[10px] font-black uppercase tracking-wider text-black border border-gray-200 bg-white px-3 py-1.5 shadow-sm hover:shadow-md transition-shadow hover:bg-primary hover:text-white transition-all active:translate-y-0.5 cursor-pointer flex items-center gap-1"
                   >
                     ← Volver a Inicio
                   </button>
                 </div>
                 
                 {/* Embedded Profile detail card simulating worker layout */}
-                <section className="bg-white p-6 sm:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-6">
+                <section className="bg-white p-6 sm:p-8 border border-gray-200 shadow-sm hover:shadow-md transition-shadow space-y-6">
                   <div className="flex flex-col md:flex-row gap-6 items-start">
                     <img 
                       alt={currentActiveProvider.name}
                       src={currentActiveProvider.avatar}
-                      className="w-24 h-24 border-2 border-black object-cover shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                      onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x400/eeeeee/999999?text=Avatar'; }}
+                      className="w-24 h-24 border border-gray-200 object-cover shadow-sm hover:shadow-md transition-shadow"
                     />
                     
                     <div className="space-y-1.5 flex-1 w-full">
-                      <span className="bg-[#FFEFE6] text-black text-[9px] font-black px-2 py-0.5 border border-black uppercase tracking-wider font-mono">
+                      <span className="bg-[#FFEFE6] text-black text-[9px] font-black px-2 py-0.5 border border-gray-200 uppercase tracking-wider font-mono">
                         {currentActiveProvider.isOnline ? '🟢 Disponible Ahora' : 'Offline'}
                       </span>
                       <h3 className="font-headline text-2xl font-black text-black pt-1 uppercase tracking-tight">{currentActiveProvider.name}</h3>
-                      <p className="text-xs text-[#FF4D00] font-black uppercase font-mono tracking-wider">{currentActiveProvider.specialty}</p>
+                      <p className="text-xs text-primary font-black uppercase font-mono tracking-wider">{currentActiveProvider.specialty}</p>
                       
                       <div className="flex flex-wrap items-center gap-3 text-[10px] text-gray-500 font-mono font-bold uppercase pt-1">
                         <span className="flex items-center gap-0.5 font-black text-black">
@@ -411,7 +435,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="bg-gray-50 p-5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] space-y-1">
+                  <div className="bg-gray-50 p-5 border border-gray-200 shadow-sm hover:shadow-md transition-shadow space-y-1">
                     <h4 className="font-black uppercase tracking-wider text-[10px] text-gray-500 font-mono">Biografía del Oferente</h4>
                     <p className="text-black text-xs font-semibold uppercase leading-relaxed font-sans">{currentActiveProvider.bio}</p>
                   </div>
@@ -421,7 +445,7 @@ export default function App() {
                     <h4 className="text-[10px] font-mono font-black uppercase text-gray-500">Habilidades Certificadas</h4>
                     <div className="flex flex-wrap gap-2">
                       {currentActiveProvider.skills.map((s, idx) => (
-                        <span key={idx} className="bg-white text-black border-2 border-black text-[10px] font-black px-3 py-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#E1D1F6] transition-all">
+                        <span key={idx} className="bg-white text-black border border-gray-200 text-[10px] font-black px-3 py-1.5 shadow-sm hover:shadow-md transition-shadow hover:bg-[#E1D1F6] transition-all">
                           ✓ {s.toUpperCase()}
                         </span>
                       ))}
@@ -429,7 +453,7 @@ export default function App() {
                   </div>
 
                   {/* Items Catalog Offered by This specific worker */}
-                  <div className="space-y-4 pt-6 border-t-2 border-black/10">
+                  <div className="space-y-4 pt-6 border-t-2 border-gray-200/10">
                     <h4 className="font-headline text-base font-black text-black uppercase tracking-tight">
                       Catálogo Exclusivo de {currentActiveProvider.name}
                     </h4>
@@ -441,13 +465,13 @@ export default function App() {
                         {db.items.filter(i => i.providerId === currentActiveProvider.id).map(item => {
                           const outOfStock = !item.isService && item.stock <= 0;
                           return (
-                             <div key={item.id} className="bg-gray-50 p-4 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-between">
+                             <div key={item.id} className="bg-gray-50 p-4 border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex items-center justify-between">
                                <div className="flex items-center gap-3">
-                                 <img src={item.image} className="w-10 h-10 border-2 border-black object-cover" />
+                                 <img src={item.image} className="w-10 h-10 border border-gray-200 object-cover" />
                                  <div className="space-y-0.5">
-                                   <span className="text-[8px] bg-black text-white px-1.5 font-mono uppercase font-bold tracking-tight inline-block">{item.isService ? 'SERVICIO' : 'PRODUCTO'}</span>
+                                   <span className="text-[8px] bg-secondary-custom text-white px-1.5 font-mono uppercase font-bold tracking-tight inline-block">{item.isService ? 'SERVICIO' : 'PRODUCTO'}</span>
                                    <h5 className="text-[11px] font-black uppercase text-black line-clamp-1">{item.name}</h5>
-                                   <p className="text-[10px] font-mono font-extrabold text-[#FF4D00]">${item.price} / {item.priceUnit.toUpperCase()}</p>
+                                   <p className="text-[10px] font-mono font-extrabold text-primary">${item.price} / {item.priceUnit.toUpperCase()}</p>
                                  </div>
                                </div>
                                
@@ -463,10 +487,10 @@ export default function App() {
                                    }
                                  }}
                                  disabled={!item.isService && outOfStock}
-                                 className={`px-3 py-1.5 border-2 border-black text-[9px] font-black uppercase tracking-wider transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${
+                                 className={`px-3 py-1.5 border border-gray-200 text-[9px] font-black uppercase tracking-wider transition-all shadow-sm hover:shadow-md transition-shadow ${
                                    !item.isService && outOfStock
                                      ? 'bg-gray-250 text-gray-400 border-gray-300 shadow-none cursor-not-allowed'
-                                     : 'bg-[#FF4D00] text-white hover:bg-black hover:text-white cursor-pointer active:translate-y-0.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
+                                     : 'bg-primary text-white hover:bg-black hover:text-white cursor-pointer active:translate-y-0.5 shadow-sm hover:shadow-md transition-shadow'
                                  }`}
                                >
                                  {item.isService ? 'Agendar' : outOfStock ? 'Sin stock' : 'Comprar'}
@@ -505,7 +529,7 @@ export default function App() {
 
       {/* Persistent Bottom Tabbed Menu (Only applicable in client mode) */}
       {db.currentRole === 'client' && (
-        <nav className="fixed bottom-0 left-0 w-full bg-white border-t-4 border-black z-40 shadow-[0_-4px_0px_rgba(0,0,0,0.1)]">
+        <nav className="fixed bottom-0 left-0 w-full bg-white border-t-4 border-gray-200 z-40 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex justify-around items-center px-4 py-3.5 max-w-md mx-auto">
             
             {/* Tab Link: Home */}
@@ -513,7 +537,7 @@ export default function App() {
               onClick={() => { setSelectedCategory(null); setActiveTab('home'); }}
               className={`flex flex-col items-center gap-1 p-2 text-xs font-black uppercase transition-all cursor-pointer ${
                 activeTab === 'home' 
-                  ? 'text-[#FF4D00] scale-105' 
+                  ? 'text-primary scale-105' 
                   : 'text-gray-500 hover:text-black'
               }`}
             >
@@ -521,17 +545,30 @@ export default function App() {
               <span className="font-label text-[9px] font-black tracking-wider mt-0.5">Inicio</span>
             </button>
 
+            {/* Tab Link: Global Market */}
+            <button
+              onClick={() => { setActiveTab('market'); }}
+              className={`flex flex-col items-center gap-1 p-2 text-xs font-black uppercase transition-all cursor-pointer ${
+                activeTab === 'market' 
+                  ? 'text-primary scale-105' 
+                  : 'text-gray-500 hover:text-black'
+              }`}
+            >
+              <Sparkles size={18} className="stroke-[2.5]" />
+              <span className="font-label text-[9px] font-black tracking-wider mt-0.5">Mercado</span>
+            </button>
+
             {/* Tab Link: Requests / Category Explorer */}
             <button
               onClick={() => { setActiveTab('requests'); }}
               className={`flex flex-col items-center gap-1 p-2 text-xs font-black uppercase transition-all cursor-pointer ${
                 activeTab === 'requests' 
-                  ? 'text-[#FF4D00] scale-105' 
+                  ? 'text-primary scale-105' 
                   : 'text-gray-500 hover:text-black'
               }`}
             >
               <Search size={18} className="stroke-[2.5]" />
-              <span className="font-label text-[9px] font-black tracking-wider mt-0.5">Buscar</span>
+              <span className="font-label text-[9px] font-black tracking-wider mt-0.5">Categorías</span>
             </button>
 
             {/* Tab Link: Bookings */}
@@ -539,7 +576,7 @@ export default function App() {
               onClick={() => setActiveTab('bookings')}
               className={`flex flex-col items-center gap-1 p-2 text-xs font-black uppercase transition-all cursor-pointer ${
                 activeTab === 'bookings' 
-                  ? 'text-[#FF4D00] scale-105' 
+                  ? 'text-primary scale-105' 
                   : 'text-gray-500 hover:text-black'
               }`}
             >
@@ -552,7 +589,7 @@ export default function App() {
               onClick={() => setActiveTab('profile')}
               className={`flex flex-col items-center gap-1 p-2 text-xs font-black uppercase transition-all cursor-pointer ${
                 activeTab === 'profile' 
-                  ? 'text-[#FF4D00] scale-105' 
+                  ? 'text-primary scale-105' 
                   : 'text-gray-500 hover:text-black'
               }`}
             >

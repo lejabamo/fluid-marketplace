@@ -63,17 +63,17 @@ export const ClientHome: React.FC<ClientHomeProps> = ({
 
   const carouselImages = [
     {
-      url: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=1200&auto=format&fit=crop',
       title: 'Mercado Fluido Cauca',
       subtitle: 'Conectando pequeños negocios de Popayán y sus alrededores.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1616428456073-61b4db1ee235?q=80&w=1200&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1605369572399-05d8d64a0f6e?q=80&w=1200&auto=format&fit=crop',
       title: 'Artesanos Misak',
       subtitle: 'Apoya la herencia cultural tejida a mano desde Silvia, Cauca.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1587049352847-4d4b1275eb1f?q=80&w=1200&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1506485338023-6ce5f36692df?q=80&w=1200&auto=format&fit=crop',
       title: 'Agro Local de Puracé',
       subtitle: 'Alimentos frescos, cultivados con respeto por la Madre Tierra.'
     }

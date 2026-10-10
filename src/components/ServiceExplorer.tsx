@@ -284,6 +284,7 @@ export const ServiceExplorer: React.FC<ServiceExplorerProps> = ({
                       <img 
                         src={item.image} 
                         alt={item.name} 
+                        onError={(e) => { e.currentTarget.src = 'https://placehold.co/600x400/f8f9fa/a1a1aa?text=Sin+Imagen'; }}
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute bottom-3 left-3 bg-white border border-gray-200 px-2.5 py-1 text-xs font-black text-black shadow-sm hover:shadow-md transition-shadow">
@@ -400,6 +401,7 @@ export const ServiceExplorer: React.FC<ServiceExplorerProps> = ({
               <img 
                 src={selectedItem.image} 
                 alt={selectedItem.name} 
+                onError={(e) => { e.currentTarget.src = 'https://placehold.co/600x400/f8f9fa/a1a1aa?text=Sin+Imagen'; }}
                 className="w-full h-full object-cover"
               />
             </div>

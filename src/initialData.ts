@@ -272,9 +272,9 @@ const KEYS = {
 };
 
 export const getStorageData = () => {
-  if (localStorage.getItem('fluid_mp_version') !== 'v6_fix_images') {
+  if (localStorage.getItem('fluid_mp_version') !== 'v7_fallback_images') {
     localStorage.clear();
-    localStorage.setItem('fluid_mp_version', 'v6_fix_images');
+    localStorage.setItem('fluid_mp_version', 'v7_fallback_images');
   }
 
   if (!localStorage.getItem(KEYS.PROVIDERS)) {

@@ -102,6 +102,33 @@ export const INITIAL_ITEMS: ProductServiceItem[] = [
     isService: false,
     providerId: 'prov_carlos'
   },
+  {
+    id: 'item_jabon_lavanda',
+    name: 'Set de Jabones de Lavanda y Romero',
+    category: 'productos_aseo',
+    price: 25000,
+    priceUnit: 'set',
+    description: 'Trío de jabones artesanales enriquecidos con aceites esenciales relajantes, amigables con tu piel y el medio ambiente.',
+    image: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?q=80&w=800&auto=format&fit=crop',
+    stock: 25,
+    isService: false,
+    providerId: 'prov_carlos',
+    acceptsBarter: true,
+    barterPreferences: 'Plantas aromáticas o envases de vidrio',
+    estimatedBarterValue: 25
+  },
+  {
+    id: 'item_cepillos_bambu',
+    name: 'Kit de Cepillos Limpiadores de Bambú',
+    category: 'productos_aseo',
+    price: 32000,
+    priceUnit: 'kit',
+    description: 'Alternativa sostenible para la limpieza del hogar. Incluye cepillos de cerdas naturales y mangos de bambú.',
+    image: 'https://images.unsplash.com/photo-1584346133934-a3afd2a33c4c?q=80&w=800&auto=format&fit=crop',
+    stock: 18,
+    isService: false,
+    providerId: 'prov_carlos'
+  },
   // Artesanias
   {
     id: 'item_mochila_misak',
@@ -117,6 +144,33 @@ export const INITIAL_ITEMS: ProductServiceItem[] = [
     acceptsBarter: true,
     barterPreferences: 'Servicios de publicidad, insumos agrícolas o transporte',
     estimatedBarterValue: 120
+  },
+  {
+    id: 'item_ceramica_pintada',
+    name: 'Juego de Cerámica Pintada a Mano',
+    category: 'artesanias',
+    price: 85000,
+    priceUnit: 'juego',
+    description: 'Hermoso juego de 3 vasijas de cerámica, moldeadas y pintadas a mano con diseños ancestrales por artesanas locales.',
+    image: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=800&auto=format&fit=crop',
+    stock: 8,
+    isService: false,
+    providerId: 'prov_marta',
+    acceptsBarter: true,
+    barterPreferences: 'Materias primas (arcilla, pinturas) o alimentos',
+    estimatedBarterValue: 85
+  },
+  {
+    id: 'item_canasto_mimbre',
+    name: 'Canasto Tradicional Tejido',
+    category: 'artesanias',
+    price: 35000,
+    priceUnit: 'unidad',
+    description: 'Canasto resistente tejido en mimbre y fibras naturales, ideal para decoración o compras ecológicas.',
+    image: 'https://images.unsplash.com/photo-1544640808-32cb4fbadfac?q=80&w=800&auto=format&fit=crop',
+    stock: 12,
+    isService: false,
+    providerId: 'prov_marta'
   },
   // Agro Local
   {
@@ -218,9 +272,9 @@ const KEYS = {
 };
 
 export const getStorageData = () => {
-  if (localStorage.getItem('fluid_mp_version') !== 'v4_search_cauca') {
+  if (localStorage.getItem('fluid_mp_version') !== 'v5_more_items') {
     localStorage.clear();
-    localStorage.setItem('fluid_mp_version', 'v4_search_cauca');
+    localStorage.setItem('fluid_mp_version', 'v5_more_items');
   }
 
   if (!localStorage.getItem(KEYS.PROVIDERS)) {

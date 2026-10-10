@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   ArrowLeft, Star, MapPin, Calendar, Clock, Sparkles, Plus, 
-  Send, ShieldAlert, ShoppingBag, CheckCircle, PackageOpen 
+  Send, ShieldAlert, ShoppingBag, CheckCircle, PackageOpen, Scale 
 } from 'lucide-react';
 import { ProductServiceItem, ProviderProfile, ServiceCategory, UserRequest, Appointment } from '../types';
 
@@ -473,7 +473,51 @@ export const ServiceExplorer: React.FC<ServiceExplorerProps> = ({
                         value={directBarterValue}
                         onChange={(e) => setDirectBarterValue(Number(e.target.value))}
                       />
+                      </div>
                     </div>
+                    
+                    {/* BALANZA DE TRUEQUE */}
+                    {(() => {
+                      const targetVal = selectedItem.estimatedBarterValue || selectedItem.price || 1;
+                      const diff = directBarterValue - targetVal;
+                      const tiltDeg = Math.min(Math.max(((targetVal - directBarterValue) / targetVal) * 30, -30), 30);
+                      return (
+                        <div className="bg-white p-4 rounded-xl border border-tertiary-custom/30 shadow-inner my-4">
+                          <div className="flex justify-between items-end mb-4 relative">
+                            {/* Base stand of the scale */}
+                            <div className="absolute left-1/2 bottom-0 w-1 h-6 bg-gray-300 -translate-x-1/2 translate-y-6"></div>
+                            <div className="absolute left-1/2 bottom-0 w-8 h-1 bg-gray-300 -translate-x-1/2 translate-y-6 rounded-t-sm"></div>
+                            
+                            <div className="text-center w-1/3">
+                              <span className="text-[10px] font-black uppercase text-gray-500 block">Tu Oferta</span>
+                              <span className="text-lg font-black text-tertiary-custom">{directBarterValue} FP</span>
+                            </div>
+                            <div className="text-center w-1/3 flex flex-col items-center relative z-10">
+                              <div className="bg-white rounded-full p-1 shadow-sm">
+                                <Scale size={32} className="text-tertiary-custom transition-transform duration-500" style={{ transform: `rotate(${tiltDeg}deg)` }} />
+                              </div>
+                              <span className="text-[9px] font-bold uppercase mt-3 text-gray-400">Balanza</span>
+                            </div>
+                            <div className="text-center w-1/3">
+                              <span className="text-[10px] font-black uppercase text-gray-500 block">Solicitado</span>
+                              <span className="text-lg font-black text-black">{targetVal} FP</span>
+                            </div>
+                          </div>
+                          
+                          <div className="mt-6 pt-2">
+                            {directBarterValue === 0 ? (
+                              <p className="text-[10px] text-center font-bold text-gray-500 uppercase">Ingresa el valor para equilibrar la balanza.</p>
+                            ) : Math.abs(diff) <= (targetVal * 0.1) ? (
+                              <p className="text-[10px] text-center font-black text-[#10B981] bg-[#D1F6D1] py-1 rounded uppercase">¡Trato Equitativo! Perfecto para trueque.</p>
+                            ) : diff < 0 ? (
+                              <p className="text-[10px] text-center font-black text-orange-500 bg-orange-50 py-1 rounded uppercase">Tu oferta es menor. Considera agregar {Math.abs(diff)} FP.</p>
+                            ) : (
+                              <p className="text-[10px] text-center font-black text-blue-500 bg-blue-50 py-1 rounded uppercase">Tu oferta es generosa (+{diff} FP).</p>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })()}
                     
                     <div className="flex gap-2 pt-2">
                       <button 

@@ -109,7 +109,7 @@ export const INITIAL_ITEMS: ProductServiceItem[] = [
     price: 25000,
     priceUnit: 'set',
     description: 'Trío de jabones artesanales enriquecidos con aceites esenciales relajantes, amigables con tu piel y el medio ambiente.',
-    image: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1611078488825-9a4f4d2de45c?q=80&w=800&auto=format&fit=crop',
     stock: 25,
     isService: false,
     providerId: 'prov_carlos',
@@ -124,7 +124,7 @@ export const INITIAL_ITEMS: ProductServiceItem[] = [
     price: 32000,
     priceUnit: 'kit',
     description: 'Alternativa sostenible para la limpieza del hogar. Incluye cepillos de cerdas naturales y mangos de bambú.',
-    image: 'https://images.unsplash.com/photo-1584346133934-a3afd2a33c4c?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1605600659901-766b9623e5cc?q=80&w=800&auto=format&fit=crop',
     stock: 18,
     isService: false,
     providerId: 'prov_carlos'
@@ -137,7 +137,7 @@ export const INITIAL_ITEMS: ProductServiceItem[] = [
     price: 120000,
     priceUnit: 'unidad',
     description: 'Mochila en lana de oveja hilada a mano, colores magenta, azul y negro propios de la cultura Misak de Silvia, Cauca.',
-    image: 'https://images.unsplash.com/photo-1616428456073-61b4db1ee235?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1605369572399-05d8d64a0f6e?q=80&w=800&auto=format&fit=crop',
     stock: 5,
     isService: false,
     providerId: 'prov_marta',
@@ -152,7 +152,7 @@ export const INITIAL_ITEMS: ProductServiceItem[] = [
     price: 85000,
     priceUnit: 'juego',
     description: 'Hermoso juego de 3 vasijas de cerámica, moldeadas y pintadas a mano con diseños ancestrales por artesanas locales.',
-    image: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1565193566173-7a0cb3d1619b?q=80&w=800&auto=format&fit=crop',
     stock: 8,
     isService: false,
     providerId: 'prov_marta',
@@ -167,7 +167,7 @@ export const INITIAL_ITEMS: ProductServiceItem[] = [
     price: 35000,
     priceUnit: 'unidad',
     description: 'Canasto resistente tejido en mimbre y fibras naturales, ideal para decoración o compras ecológicas.',
-    image: 'https://images.unsplash.com/photo-1544640808-32cb4fbadfac?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1591081636173-3f1fbac03dcc?q=80&w=800&auto=format&fit=crop',
     stock: 12,
     isService: false,
     providerId: 'prov_marta'
@@ -272,9 +272,9 @@ const KEYS = {
 };
 
 export const getStorageData = () => {
-  if (localStorage.getItem('fluid_mp_version') !== 'v5_more_items') {
+  if (localStorage.getItem('fluid_mp_version') !== 'v6_fix_images') {
     localStorage.clear();
-    localStorage.setItem('fluid_mp_version', 'v5_more_items');
+    localStorage.setItem('fluid_mp_version', 'v6_fix_images');
   }
 
   if (!localStorage.getItem(KEYS.PROVIDERS)) {
